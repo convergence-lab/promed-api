@@ -30,7 +30,7 @@ def parse_result(data, day, verbose):
             print(f"{i}/{len(elems)} ID: {elem_dict['id']} Title: {elem_dict['title']}")
         r.close()
         parsed_data += [elem_dict]
-        break
+        sleep(0.5)
     return parsed_data
 
 def search(search_from, search_to, verbose):
