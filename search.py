@@ -11,7 +11,6 @@ def parse_result(data, day, verbose):
     soup = BeautifulSoup(html, 'lxml')
     elems = soup.select(".slink")
     for i, elem in enumerate(elems):
-        print(elem)
         elem_dict = {}
         id_ = elem.attrs["id"].replace("id", "")
         req = urllib.request.Request(f"https://www.promedmail.org/ajax/getPost.php?alert_id={id_}")
@@ -19,7 +18,6 @@ def parse_result(data, day, verbose):
         r = urllib.request.urlopen(req)
         data = r.read().decode("utf-8")
         data = json.loads(data)
-        print(data)
         post_html = data["post"]
         soup2 = BeautifulSoup(post_html, "lxml")
         post_text = soup2.get_text()
