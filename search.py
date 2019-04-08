@@ -15,7 +15,10 @@ def parse_result(data, day, verbose):
         id_ = elem.attrs["id"].replace("id", "")
         req = urllib.request.Request(f"https://www.promedmail.org/ajax/getPost.php?alert_id={id_}")
         req.add_header("Referer", "http://www.promedmail.org")
-        r = urllib.request.urlopen(req)
+        try:
+            r = urllib.request.urlopen(req)
+        except:
+            continue
         data = r.read().decode("utf-8")
         data = json.loads(data)
         post_html = data["post"]
